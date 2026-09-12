@@ -1,0 +1,45 @@
+[package]
+name = "agentos"
+version = "0.1.0"
+description = "Local-first personal desktop AI agent"
+authors = ["andrewice"]
+edition = "2021"
+
+[lib]
+name = "agentos_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "devtools"] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+rusqlite = { version = "0.32", features = ["bundled", "chrono"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+dirs = "6"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "process", "io-util", "sync", "time", "net", "io-std"] }
+base64 = "0.22"
+sha2 = "0.10"
+urlencoding = "2.1"
+futures-util = "0.3"
+thiserror = "2"
+regex = "1"
+parking_lot = "0.12"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+notify-rust = "4"
+keyring = "3"
+async-trait = "0.1"
+device_query = "2"
+
+# Production uses custom-protocol (embedded UI).
+# `tauri dev` disables default features so the Vite URL is used instead.
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

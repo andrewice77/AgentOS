@@ -1,0 +1,310 @@
+/* Default tokens — overridden at runtime by applyUiSettings() in theme.ts */
+:root {
+  --bg0: #121820;
+  --bg1: #1a2332;
+  --bg2: #243044;
+  --main-bg: #121820;
+  --ink: #e8edf5;
+  --muted: #8b9ab0;
+  --accent: #5b8def;
+  --accent-2: #3db89a;
+  --accent-soft: rgba(91, 141, 239, 0.14);
+  --danger: #e86b6a;
+  --line: rgba(232, 237, 245, 0.1);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --shell-gradient-a: rgba(91, 141, 239, 0.12);
+  --shell-gradient-b: rgba(155, 123, 255, 0.08);
+  --panel-bg: #1a2332;
+  --rail-bg: #0e131a;
+  --user-bubble: rgba(91, 141, 239, 0.16);
+  --success-bg: rgba(61, 184, 154, 0.12);
+  --warn-bg: rgba(229, 168, 74, 0.12);
+  --space-xs: 0.35rem;
+  --space-sm: 0.55rem;
+  --space-md: 0.85rem;
+  --space-lg: 1.25rem;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+:root[data-density="compact"] {
+  --space-xs: 0.25rem;
+  --space-sm: 0.4rem;
+  --space-md: 0.65rem;
+  --space-lg: 1rem;
+}
+
+/* Native controls (select popup, scrollbars) follow the active theme */
+:root:not([data-theme="light"]) {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--main-bg, var(--bg0));
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+html.shell-main,
+html.shell-main body {
+  background-color: var(--main-bg, var(--bg0));
+  background-image:
+    radial-gradient(1200px 600px at 10% -10%, var(--shell-gradient-a), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, var(--shell-gradient-b), transparent 50%),
+    linear-gradient(165deg, var(--bg0), color-mix(in srgb, var(--bg0) 85%, var(--bg1)) 45%, var(--bg0));
+  min-height: 100%;
+}
+
+html.shell-main #boot {
+  background: var(--main-bg, var(--bg0));
+  min-height: 100%;
+}
+
+html.shell-avatar,
+html.shell-avatar body,
+html.shell-avatar #boot {
+  background: var(--bg0) !important;
+  min-height: 100%;
+}
+
+html.shell-avatar.shell-avatar-glass,
+html.shell-avatar.shell-avatar-glass body,
+html.shell-avatar.shell-avatar-glass #boot {
+  background: transparent !important;
+}
+
+html.shell-chat,
+html.shell-chat body,
+html.shell-chat #boot {
+  background: transparent !important;
+  min-height: 100%;
+}
+
+#boot {
+  display: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+  border-radius: 999px;
+}
+
+/* Shared UI primitives used across views */
+.ui-panel {
+  border: 1px solid var(--line);
+  background: var(--panel-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.ui-panel.warn {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: var(--warn-bg);
+}
+
+.ui-panel h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.ui-panel-desc {
+  margin: 0 0 var(--space-md);
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.ui-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--line);
+}
+
+.ui-row:first-of-type {
+  border-top: 0;
+}
+
+.ui-muted {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.ui-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.ui-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.ui-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.ui-btn,
+.ui-btn-ghost {
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  color: var(--ink);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.ui-btn:hover:not(:disabled),
+.ui-btn-ghost:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.ui-btn-ghost {
+  background: transparent;
+}
+
+.ui-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-field label,
+label.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: 0.9rem;
+}
+
+.ui-field input,
+.ui-field textarea,
+.ui-field select,
+textarea,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background-color: var(--bg2);
+  color: var(--ink);
+  padding: var(--space-sm) var(--space-md);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 2.35rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b9ab0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  background-size: 1rem;
+}
+
+select option,
+select optgroup {
+  background-color: var(--bg1);
+  color: var(--ink);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--accent);
+  width: auto;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+  width: 100%;
+  cursor: pointer;
+}
+
+.ui-content-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.ui-content-grid.split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 960px) {
+  .ui-content-grid.split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ui-content-grid.single {
+  grid-template-columns: 1fr;
+}
+
+.ui-banner {
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  font-size: 0.9rem;
+}
+
+.ui-banner.soft {
+  background: var(--success-bg);
+  border-color: color-mix(in srgb, var(--accent-2) 35%, transparent);
+}
+
+.ui-banner.warn {
+  background: var(--warn-bg);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+code {
+  color: var(--accent);
+  font-size: 0.88em;
+}

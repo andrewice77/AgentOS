@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it" class="shell-main" style="background: #121820; color-scheme: dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>AgentOS</title>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover" style="background: #121820; margin: 0; min-height: 100%">
+    <script>
+      try {
+        const label = window.__TAURI_INTERNALS__?.metadata?.currentWindow?.label;
+        if (label === "avatar") {
+          document.documentElement.classList.add("shell-avatar");
+          if (!/Linux/i.test(navigator.userAgent)) {
+            document.documentElement.classList.add("shell-avatar-glass");
+          }
+        }
+        else if (label === "chat") document.documentElement.classList.add("shell-chat");
+        else if (label) document.documentElement.classList.add("shell-main");
+      } catch (_) {
+        /* browser preview */
+      }
+    </script>
+    <div id="boot" aria-hidden="true"></div>
+    <div style="display: contents">%sveltekit.body%</div>
+    <script>
+      const boot = document.getElementById("boot");
+      const hide = () => boot && boot.remove();
+      window.addEventListener("sveltekit:start", hide);
+      setTimeout(hide, 2000);
+    </script>
+  </body>
+</html>

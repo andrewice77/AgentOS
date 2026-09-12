@@ -4,7 +4,9 @@ Local-first personal desktop AI agent for Linux (**Tauri 2 + Rust + Svelte 5**).
 
 **In costruzione.** Il progetto è attivo e incompleto: API, UI e brand possono ancora cambiare. Consigli, issue e collaborazioni sono i benvenuti.
 
-This project is under active construction. Feedback, ideas, and pull requests are welcome.
+Oggi il target è **Linux**. Se il progetto piacerà, arriveranno anche le versioni per **Windows** e **macOS**.
+
+This project is under active construction. Feedback, ideas, and pull requests are welcome. Linux first; Windows and macOS builds later, if people actually like it.
 
 Repo: [github.com/andrewice77/AgentOS](https://github.com/andrewice77/AgentOS)
 
@@ -32,7 +34,7 @@ Working title: **AgentOS** — brand definitivo ancora da scegliere (Lar / Famil
 | STT Whisper.cpp (opzionale) | OK — richiede binario + modello |
 | Briefing mattutino | OK — Settings → Briefing |
 | Skills procedurali + background review | OK — tab Skills |
-| Packaging macOS / Windows | **Rimandato** (Milestone 4) |
+| Packaging macOS / Windows | In programma — se il progetto piacerà |
 
 ### Setup voce (Linux)
 
@@ -159,7 +161,7 @@ Per un server HTTP (Gmail, Calendar, o qualsiasi altro MCP remoto): tab **MCP** 
 
 ## Fuori scope (rimandato)
 
-Packaging macOS/Windows (Milestone 4), marketplace MCP, Docker obbligatorio, tool filesystem/git sandbox nativi (Milestone 3).
+Marketplace MCP, Docker obbligatorio, tool filesystem/git sandbox nativi (Milestone 3). Packaging **Windows / macOS** è in programma più avanti (Milestone 4), se il progetto avrà seguito.
 
 ## Contribuire
 
